@@ -5,8 +5,12 @@ import { newToDo } from "./task";
 const submit_btn = document.querySelector('.submitBtn');
 const text_input = document.getElementById('project');
 
-let projects = []
-let toDos = []
+let projects = ['Projects',
+  {
+    title: 'inbox'
+  },
+]
+let toDos = ['Tasks']
 
 submit_btn.addEventListener('click', () => {
     projects.push(newProject(text_input.value));
@@ -15,17 +19,25 @@ submit_btn.addEventListener('click', () => {
 
 
 const task_btn = document.querySelector('.taskBtn');
+const submit2_btn = document.querySelector('.submitBtn2');
 
-task_btn.addEventListener('click', () => {
-    // toDos.push(newToDo())
+const title_input = document.getElementById('title');
+const description_input = document.getElementById('description');
+const dueDate_input = document.getElementById('dueDate');
+const priority_input = document.getElementById('priority');
+
+submit2_btn.addEventListener('click', () => {
+    toDos.push(newToDo(title_input.value, description_input.value, 
+                       dueDate_input.value, priority_input.value));
+})
+
+document.getElementById('test').addEventListener('click', () => {
+  console.log(toDos);
+  console.log(projects);
 })
 
 
 
-let andres = newToDo('hacer tarea', 'terminar code', 'la proxima semana', 'alta', 'dificil');
-let tareita = newProject('tarea');
-
-// console.table(tareita);
 
 
 
@@ -35,11 +47,9 @@ let tareita = newProject('tarea');
 
 
 
-
-
-
-
-
+//
+// modals
+//
 var modal = document.getElementById("myModal");
 var modal2 = document.getElementById("myModal2");
 

@@ -21,7 +21,7 @@
 
 .sidebar {
     /* height: 100%; */
-    background-color: rgb(69, 69, 176);
+    background-color: #ff8a00;
     grid-row: 1/3;
     /* position: fixed;
     left: 0;
@@ -42,11 +42,13 @@ a {
 }
 
 .header {
-    background-color: grey;
+    background-color: #f4b738;
     /* grid-row: ; */
     /* text-align: end; */
     display: flex;
     justify-content: end;
+    /* grid-column: 1/3; */
+    /* grid-row: 1/2; */
 }
 
 .header button {
@@ -59,18 +61,33 @@ a {
 }
 
 .content {
-    background-color: coral;
-    display: grid;
+    /* background-color: ; */
+    /* display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(300px, 1fr)); */
+    display: flex;
+    flex-direction: column;
+
     gap: 10px;
     padding: 10px;
+    /* column-gap: 20px; */
 }
 
 .card {
     height: 300px;
     width: 300px;
-    background-color: orange;
+    background-color: #fffcc9;
+}
+
+.row {
+    height: 70px;
+    max-height: 70px;
+    /* width: 300px; */
+    /* width: 100%; */
+    flex: 1;
+    /* background-color: #fffcc9; */
+    background-color: #72715d;
+    border-radius: 10px;
 }
 
 
