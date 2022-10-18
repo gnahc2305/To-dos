@@ -1,19 +1,20 @@
 import { newProject } from "./project";
 import { newToDo } from "./task";
-
+import { showTask } from "./dom";
 // const project_btn = document.querySelector('.projectBtn');
 const submit_btn = document.querySelector('.submitBtn');
 const text_input = document.getElementById('project');
 
 let projects = ['Projects',
-  {
-    title: 'inbox'
-  },
+{
+  title: 'inbox'
+},
 ]
 let toDos = ['Tasks']
+let currentToDo = 0;
 
 submit_btn.addEventListener('click', () => {
-    projects.push(newProject(text_input.value));
+  projects.push(newProject(text_input.value));
 })
 
 
@@ -29,11 +30,18 @@ const priority_input = document.getElementById('priority');
 submit2_btn.addEventListener('click', () => {
     toDos.push(newToDo(title_input.value, description_input.value, 
                        dueDate_input.value, priority_input.value));
+
+    currentToDo++;
+
+    showTask(toDos[currentToDo].title, toDos[currentToDo].description, toDos[currentToDo].duedate, toDos[currentToDo].priority); 
+  // console.log(toDos[1].title);
 })
 
 document.getElementById('test').addEventListener('click', () => {
   console.log(toDos);
   console.log(projects);
+  console.log(currentToDo);
+  // showTask(); 
 })
 
 

@@ -88,6 +88,27 @@ a {
     /* background-color: #fffcc9; */
     background-color: #72715d;
     border-radius: 10px;
+    display: flex;
+}
+
+.left,
+.right {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+.left h2{
+    margin-right: 20px;
+}
+
+.right p {
+    margin-right: 20px;
+}
+
+.right {
+    margin-left: auto;
+    padding: 0px;
 }
 
 
