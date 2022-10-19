@@ -31,6 +31,34 @@ const showTask = (title, description, duedate, priority) => {
     let date_p = document.createElement('p');
     date_p.textContent = duedate;
     right_div.appendChild(date_p);
+
+    let checkbox_inp = document.createElement('input');
+    checkbox_inp.type = 'checkbox';
+    right_div.appendChild(checkbox_inp);
+
+    let delete_btn = document.createElement('button');
+    delete_btn.textContent = 'Delete';
+    right_div.appendChild(delete_btn);
 }
 
-export { showTask };
+const projects_ul = document.querySelector('.projectsUl');
+
+const showProjects = (projectName, caca) => {
+    let project_li = document.createElement('li')
+    project_li.setAttribute('id', 'projectTitle');
+    project_li.textContent = projectName;
+    projects_ul.appendChild(project_li);
+
+    let currentProject_div = document.querySelector('.currentProject');
+
+    project_li.addEventListener('click', () => {
+        console.log(projectName);
+        currentProject_div.textContent = projectName;
+    })
+}
+
+const showCurrentProject = () => {
+    let currentProject_div = document.querySelector('.currentProject');
+}
+
+export { showTask, showProjects, showCurrentProject };

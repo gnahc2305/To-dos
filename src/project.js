@@ -1,5 +1,6 @@
 const newProject = (title) => {
-    return { title };
+    const tasks = [];
+    return { title, tasks };
 }
 
 export { newProject };

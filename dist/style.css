@@ -118,6 +118,36 @@ a {
 }
 
 
+input[type="checkbox"] {
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Chrome, Safari, Opera */
+  transform: scale(2.5);
+  margin-right: 20px;
+}
+
+.right button {
+    margin-right: 20px;
+    background-color: rgb(226, 98, 98);
+    border: none;
+    height: 35px;
+    width: 80px;
+    font-size: 20px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+#projectTitle {
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
 
 
 
