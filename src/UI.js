@@ -1,3 +1,5 @@
+import { projects } from ".";
+
 const content_div = document.querySelector('.content');
 
 const showTask = (title, description, duedate, priority) => {
@@ -43,22 +45,34 @@ const showTask = (title, description, duedate, priority) => {
 
 const projects_ul = document.querySelector('.projectsUl');
 
-const showProjects = (projectName, caca) => {
+const showProjects = (projectName, number) => {
     let project_li = document.createElement('li')
     project_li.setAttribute('id', 'projectTitle');
-    project_li.textContent = projectName;
+    project_li.textContent = number + ' ' + projectName;
     projects_ul.appendChild(project_li);
 
     let currentProject_div = document.querySelector('.currentProject');
 
     project_li.addEventListener('click', () => {
-        console.log(projectName);
-        currentProject_div.textContent = projectName;
+        deleteTasks()
+        currentProject_div.textContent = number + ' ' + projectName;
+
+        let indexOfProject = parseInt(project_li.textContent.charAt(0));
+        // console.log(projects);
+        projects[indexOfProject].tasks.forEach(task => {
+            // console.log(task)
+            showTask(task.title, task.descriptio, task.duedate, task.priority);
+        })
     })
 }
 
-const showCurrentProject = () => {
-    let currentProject_div = document.querySelector('.currentProject');
+
+const deleteTasks = () => {
+    let allRows = document.querySelectorAll('.row')
+    allRows.forEach(row => { 
+        row.remove()
+    })
 }
 
-export { showTask, showProjects, showCurrentProject };
+
+export { showTask, showProjects, deleteTasks };
