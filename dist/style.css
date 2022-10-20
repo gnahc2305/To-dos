@@ -21,7 +21,8 @@
 
 .sidebar {
     /* height: 100%; */
-    background-color: #ff8a00;
+    /* background-color: #ff8a00; */
+    background-color: #683bb8;
     grid-row: 1/3;
     /* position: fixed;
     left: 0;
@@ -42,7 +43,8 @@ a {
 }
 
 .header {
-    background-color: #f4b738;
+    /* background-color: #f4b738; */
+    background-color: #ffffff;
     /* grid-row: ; */
     /* text-align: end; */
     display: flex;
@@ -92,7 +94,8 @@ a {
     /* width: 100%; */
     flex: 1;
     /* background-color: #fffcc9; */
-    background-color: #72715d;
+    /* background-color: #72715d; */
+    background-color: #f0d8fc;
     border-radius: 10px;
     display: flex;
 }

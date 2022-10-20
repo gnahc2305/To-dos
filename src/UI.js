@@ -1,8 +1,8 @@
-import { projects } from ".";
+import { projects, project_h1, currentInboxToDo } from ".";
 
 const content_div = document.querySelector('.content');
 
-const showTask = (title, description, duedate, priority) => {
+const showTask = (title, description, duedate, priority, number) => {
     let row_div = document.createElement('div');
     row_div.classList.add('row');
     content_div.appendChild(row_div);
@@ -14,7 +14,7 @@ const showTask = (title, description, duedate, priority) => {
 
 
     let header_h2 = document.createElement('h2');
-    header_h2.textContent = title
+    header_h2.textContent = number + 1 + ' ' + title
     left_div.appendChild(header_h2);
 
     let description_p = document.createElement('p');
@@ -34,13 +34,28 @@ const showTask = (title, description, duedate, priority) => {
     date_p.textContent = duedate;
     right_div.appendChild(date_p);
 
-    let checkbox_inp = document.createElement('input');
-    checkbox_inp.type = 'checkbox';
-    right_div.appendChild(checkbox_inp);
+    // let checkbox_inp = document.createElement('input');
+    // checkbox_inp.type = 'checkbox';
+    // right_div.appendChild(checkbox_inp);
 
     let delete_btn = document.createElement('button');
     delete_btn.textContent = 'Delete';
     right_div.appendChild(delete_btn);
+
+    delete_btn.addEventListener('click', () => {
+        row_div.remove();
+        // if (project_h1.textContent === 'Inbox') {
+            // console.log(number);
+            // console.log(projects[0].tasks.length)
+            // projects[0].tasks.forEach(task => {
+                // console.log('hola');
+                // projects[0].tasks.splice(number, 1);
+            // })
+            // number--;
+        // } else {}
+
+        // }
+    })
 }
 
 const projects_ul = document.querySelector('.projectsUl');

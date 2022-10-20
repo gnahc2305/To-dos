@@ -1,8 +1,7 @@
-import { newProject } from "./project";
-import { newToDo } from "./task";
+import { newToDo, newProject } from "./app";
 import { showProjects, showTask, deleteTasks } from "./UI";
 import createModal from "./modal";
-// const project_btn = document.querySelector('.projectBtn');
+
 const submit_btn = document.querySelector('.submitBtn');
 const text_input = document.getElementById('project');
 let currentProject_div = document.querySelector('.currentProject');
@@ -15,8 +14,20 @@ let projects = [
   tasks: []
 },
 ]
+
+
+let storedInput = localStorage.getItem('0');
+
+if (storedInput) {
+  // console.log(JSON.parse(storedInput));
+  let toDoObj = JSON.parse(storedInput)
+  projects[0].tasks.push(toDoObj);
+  // console.log(toDoObj.title);
+  showTask(toDoObj.title, toDoObj.description, toDoObj.duedate, toDoObj.priority);
+}
+
+
 let currentInboxToDo = -1;
-let currentToDo = -1;
 let currentProject = 0;
 
 submit_btn.addEventListener('click', () => {
@@ -24,7 +35,6 @@ submit_btn.addEventListener('click', () => {
   currentProject++;
   showProjects(projects[currentProject].title, currentProject);
 })
-
 
 
 const task_btn = document.querySelector('.taskBtn');
@@ -39,35 +49,28 @@ let project_h1 = document.querySelector('.currentProject');
 submit2_btn.addEventListener('click', () => {
 
   if (project_h1.textContent === 'Inbox') {
-    // console.log('estas en Inbox');
     projects[0].tasks.push(newToDo(title_input.value, description_input.value, 
                          dueDate_input.value, priority_input.value));
 
     currentInboxToDo++;
     let toDo = projects[0].tasks[currentInboxToDo];
-    showTask(toDo.title, toDo.description, toDo.duedate, toDo.priority)
+    showTask(toDo.title, toDo.description, toDo.duedate, toDo.priority, currentInboxToDo);
+      
+    localStorage.setItem(currentInboxToDo, JSON.stringify(toDo));
   } else {
-    // console.log('estas en: ' + project_h1.textContent);
 
     let indexOfProject = parseInt(currentProject_div.textContent.charAt(0))
     projects[indexOfProject].tasks.push(newToDo(title_input.value, description_input.value, dueDate_input.value, priority_input.value));
   
 
-    // console.log('index' + indexOfProject);
-    // console.log('currenttodo' + currentToDo)
-    
     projects[indexOfProject].currentTask++
-    // console.log(projects[indexOfProject].currentTask);
-
-    // currentToDo++;
 
     let toDo = projects[indexOfProject].tasks[projects[indexOfProject].currentTask]
-    showTask(toDo.title, toDo.description, toDo.duedate, toDo.priority)
-  }
+    showTask(toDo.title, toDo.description, toDo.duedate, toDo.priority, projects[indexOfProject].currentTask);
 
-    // currentToDo++;
-    // let toDo = projects[0].tasks[currentToDo]
-    // showTask(toDo.title, toDo.description, toDo.duedate, toDo.priority)
+    localStorage.setItem(projects[indexOfProject].currentTask, JSON.stringify(toDo));
+
+  }
 })
 
 document.getElementById('test').addEventListener('click', () => {
@@ -81,8 +84,7 @@ inbox_li.addEventListener('click', () => {
     deleteTasks();
     projects[0].tasks.forEach(task => {
       showTask(task.title, task.description, task.duedate, task.priority);
-        // console.log(task.title);
       })
 })
 
-export { projects }
+export { projects, project_h1, currentInboxToDo }
