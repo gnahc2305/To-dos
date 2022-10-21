@@ -2,7 +2,7 @@ import { projects, project_h1, currentInboxToDo } from ".";
 
 const content_div = document.querySelector('.content');
 
-const showTask = (title, description, duedate, priority, number) => {
+const showTask = (title, description, duedate, priority,) => {
     let row_div = document.createElement('div');
     row_div.classList.add('row');
     content_div.appendChild(row_div);
@@ -14,7 +14,7 @@ const showTask = (title, description, duedate, priority, number) => {
 
 
     let header_h2 = document.createElement('h2');
-    header_h2.textContent = number + 1 + ' ' + title
+    header_h2.textContent = title//number + 1 + ' ' + title;
     left_div.appendChild(header_h2);
 
     let description_p = document.createElement('p');
