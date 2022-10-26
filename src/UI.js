@@ -102,6 +102,7 @@ const projects_ul = document.querySelector('.projectsUl');
 const showProjects = (projectName, number) => {
     let project_li = document.createElement('li')
     project_li.setAttribute('id', 'projectTitle');
+    project_li.classList.add('project' + number);
     project_li.textContent = number + ' ' + projectName;
     projects_ul.appendChild(project_li);
 

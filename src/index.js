@@ -175,14 +175,41 @@ submit2_btn.addEventListener('click', () => {
 
 document.getElementById('test').addEventListener('click', () => {
   console.log(projects);
-  // console.log(projects[0]);
-  // console.log(projects[0].tasks);
+})
 
+document.querySelector('.deleteProject').addEventListener('click', () => {
+  let nameOfKey = currentProject_div.textContent.slice(2);
+  let indexOfDelete = parseInt(currentProject_div.textContent);
+  let project_list = document.querySelector('.project' + indexOfDelete);
+  //switch to inbox
+  if (currentProject_div.textContent === 'Inbox') {
+    console.log('cant delete inbox');
+  } else {
+    location.reload();
+    // let x = 0;
+    // currentProject_div.textContent = 'Inbox';
+    // deleteTasks();
+    // projects[0].tasks.forEach(task => {
+    //   showTask(task.title, task.description, task.duedate, task.priority, x + 1);
+    //   x++;
+    // })
+  }
 
-  // console.log(Object.entries(projects[0].tasks[0]));
-  // console.log(JSON.parse(storedInput));
-  // console.log(JSON.parse(storedInput));
-  // console.log(_lsTotal);
+  project_list.parentNode.removeChild(project_list);
+
+  delete projects[indexOfDelete];
+
+  let newProject = projects.filter(element => {
+    if (Object.keys(element).length !== 0) {
+        return true;
+      }
+      return false;
+  });
+
+  projects = newProject;
+
+  localStorage.removeItem(nameOfKey);
+
 })
 
 const inbox_li = document.querySelector('.inbox')
