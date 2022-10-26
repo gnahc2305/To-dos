@@ -173,9 +173,6 @@ submit2_btn.addEventListener('click', () => {
   }
 })
 
-document.getElementById('test').addEventListener('click', () => {
-  console.log(projects);
-})
 
 document.querySelector('.deleteProject').addEventListener('click', () => {
   let nameOfKey = currentProject_div.textContent.slice(2);
@@ -190,39 +187,45 @@ document.querySelector('.deleteProject').addEventListener('click', () => {
     // currentProject_div.textContent = 'Inbox';
     // deleteTasks();
     // projects[0].tasks.forEach(task => {
-    //   showTask(task.title, task.description, task.duedate, task.priority, x + 1);
-    //   x++;
-    // })
-  }
-
-  project_list.parentNode.removeChild(project_list);
-
-  delete projects[indexOfDelete];
-
-  let newProject = projects.filter(element => {
-    if (Object.keys(element).length !== 0) {
+      //   showTask(task.title, task.description, task.duedate, task.priority, x + 1);
+      //   x++;
+      // })
+    }
+    
+    project_list.parentNode.removeChild(project_list);
+    
+    delete projects[indexOfDelete];
+    
+    let newProject = projects.filter(element => {
+      if (Object.keys(element).length !== 0) {
         return true;
       }
       return false;
-  });
-
-  projects = newProject;
-
-  localStorage.removeItem(nameOfKey);
-
-})
-
-const inbox_li = document.querySelector('.inbox')
-
-inbox_li.addEventListener('click', () => {
-  let x = 0;
-  currentProject_div.textContent = 'Inbox';
-  deleteTasks();
-  projects[0].tasks.forEach(task => {
-    // showTask(task[x].title, task[x].description, task[x].duedate, task[x].priority, x + 1);
-    showTask(task.title, task.description, task.duedate, task.priority, x + 1);
-    x++;
+    });
+    
+    projects = newProject;
+    
+    localStorage.removeItem(nameOfKey);
+    
+  })
+  
+  const inbox_li = document.querySelector('.inbox')
+  
+  inbox_li.addEventListener('click', () => {
+    let x = 0;
+    currentProject_div.textContent = 'Inbox';
+    deleteTasks();
+    projects[0].tasks.forEach(task => {
+      // showTask(task[x].title, task[x].description, task[x].duedate, task[x].priority, x + 1);
+      showTask(task.title, task.description, task.duedate, task.priority, x + 1);
+      x++;
     })
-})
+  })
+
+  
+// document.getElementById('test').addEventListener('click', () => {
+//   console.log(projects);
+// })
+
 
 export { projects, project_h1, currentInboxToDo }
