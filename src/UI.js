@@ -44,6 +44,8 @@ const showTask = (title, description, duedate, priority, number) => {
 
     delete_btn.addEventListener('click', () => {
         row_div.remove();
+
+
         // console.log(projects[0].tasks[0].title);
         // console.log(number)
 
@@ -57,8 +59,6 @@ const showTask = (title, description, duedate, priority, number) => {
 
 
         if (project_h1.textContent === 'Inbox') {
-            // console.log(projects[0].tasks[number -1]);
-            // console.log(projects[0].tasks);
             delete projects[0].tasks[number - 1];
 
             let newProject = projects[0].tasks.filter(element => {
@@ -72,31 +72,27 @@ const showTask = (title, description, duedate, priority, number) => {
             delete projects[0].tasks;
             projects[0].tasks = newProject;
 
-            // localStorage.clear();
             localStorage.setItem('inbox', JSON.stringify(projects[0].tasks));
-            // console.log();
-            // projects[0].tasks.filter(element => {
-            //     if (Object.keys(element).length !== 0) {
-            //         return true;
-            //     }
-            //     return false
-            // });
-            // function removeEmpty(obj) {
-                // return Object.fromEntries(Object.entries(obj).filter(([_, v]) => v != null));
-            // }
+        } else {
+            // console.log(projects[number].tasks[number - number])
+            let currentIndexProject = parseInt(document.querySelector('.currentProject').textContent.charAt(0));
+            // console.log(projects[number])
+            // console.log(currentIndexProject);
+            // console.log(projects[number].tasks.length)
+            delete projects[currentIndexProject].tasks[number - 1];
 
-            // removeEmpty(projects[0].tasks[number - 1]);
-            // Object.keys(projects[0].tasks).forEach(key => console.log(projects[0].tasks[key + 1]));
-            // Object.keys(projects[0].tasks).forEach(key => projects[0].tasks[key] === undefined ? delete projects[0].tasks[key] : {});
-            // Object.keys(projects[0].tasks[number - 1]).forEach(key => projects[0].tasks[key] === undefined && delete projects[0].tasks[key])
-            // localStorage.clear();
-            // localStorage.setItem('inbox', JSON.stringify(projects[0].tasks))
-            // projects[0].tasks.forEach(task => {
-                // projects[0].tasks.splice(number - 1, 1);
-                // delete projects[0].tasks[number - 1];
-                // console.log(projects[0].tasks);
-            // })
-        } else {}
+            let newProject = projects[currentIndexProject].tasks.filter(element => {
+                if (Object.keys(element).length !== 0) {
+                    return true;
+                  }
+                  return false;
+            });
+
+
+            delete projects[currentIndexProject].tasks;
+            projects[currentIndexProject].tasks = newProject;
+            localStorage.setItem(projects[currentIndexProject].title , JSON.stringify(projects[currentIndexProject].tasks));
+        }
 
     })
 }
@@ -116,6 +112,7 @@ const showProjects = (projectName, number) => {
         currentProject_div.textContent = number + ' ' + projectName;
 
         let indexOfProject = parseInt(project_li.textContent.charAt(0));
+
         // console.log(projects[indexOfProject - 1]);
         // console.log(indexOfProject)
         // console.log(projects[indexOfProject - 1].tasks);
@@ -123,13 +120,14 @@ const showProjects = (projectName, number) => {
             // console.log('none');
         // }
         // console.log(indexOfProject)
+        let i = 1;
         projects[indexOfProject].tasks.forEach(task => {
             // console.log(task === undefined);
-            console.log(task)
             // if (task === undefined) {
             if (task.length === 0) {
             } else {
-                showTask(task.title, task.description, task.duedate, task.priority, indexOfProject);
+                showTask(task.title, task.description, task.duedate, task.priority, i);
+                i++;
             }
         })
     })

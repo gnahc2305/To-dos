@@ -194,7 +194,7 @@ inbox_li.addEventListener('click', () => {
   projects[0].tasks.forEach(task => {
     // showTask(task[x].title, task[x].description, task[x].duedate, task[x].priority, x + 1);
     showTask(task.title, task.description, task.duedate, task.priority, x + 1);
-    // x++;
+    x++;
     })
 })
 
