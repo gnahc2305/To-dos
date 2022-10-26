@@ -2,11 +2,11 @@ import { projects, project_h1, currentInboxToDo } from ".";
 
 const content_div = document.querySelector('.content');
 
-const showTask = (title, description, duedate, priority,) => {
+const showTask = (title, description, duedate, priority, number) => {
     let row_div = document.createElement('div');
     row_div.classList.add('row');
     content_div.appendChild(row_div);
-
+    // console.log(number)
 
     let left_div = document.createElement('div');
     left_div.classList.add('left');
@@ -14,7 +14,7 @@ const showTask = (title, description, duedate, priority,) => {
 
 
     let header_h2 = document.createElement('h2');
-    header_h2.textContent = title//number + 1 + ' ' + title;
+    header_h2.textContent = number + ' ' + title;
     left_div.appendChild(header_h2);
 
     let description_p = document.createElement('p');
@@ -44,17 +44,60 @@ const showTask = (title, description, duedate, priority,) => {
 
     delete_btn.addEventListener('click', () => {
         row_div.remove();
-        // if (project_h1.textContent === 'Inbox') {
-            // console.log(number);
-            // console.log(projects[0].tasks.length)
-            // projects[0].tasks.forEach(task => {
-                // console.log('hola');
-                // projects[0].tasks.splice(number, 1);
-            // })
-            // number--;
-        // } else {}
+        // console.log(projects[0].tasks[0].title);
+        // console.log(number)
 
-        // }
+        // projects.filter(t => {
+        //     console.log(t.tasks[number - 1]);
+        //     console.log(t.tasks);
+        // })
+        // console.log(projects[0].tasks);
+        // projects.filter(t => t.tasks[number - 1] != t.tasks[number - 1]);
+        // projects = projects.filter(t => t.tasks[number - 1] != t.tasks[number - 1]);
+
+
+        if (project_h1.textContent === 'Inbox') {
+            // console.log(projects[0].tasks[number -1]);
+            // console.log(projects[0].tasks);
+            delete projects[0].tasks[number - 1];
+
+            let newProject = projects[0].tasks.filter(element => {
+                if (Object.keys(element).length !== 0) {
+                    return true;
+                  }
+                
+                  return false;
+            });
+
+            delete projects[0].tasks;
+            projects[0].tasks = newProject;
+
+            // localStorage.clear();
+            localStorage.setItem('inbox', JSON.stringify(projects[0].tasks));
+            // console.log();
+            // projects[0].tasks.filter(element => {
+            //     if (Object.keys(element).length !== 0) {
+            //         return true;
+            //     }
+            //     return false
+            // });
+            // function removeEmpty(obj) {
+                // return Object.fromEntries(Object.entries(obj).filter(([_, v]) => v != null));
+            // }
+
+            // removeEmpty(projects[0].tasks[number - 1]);
+            // Object.keys(projects[0].tasks).forEach(key => console.log(projects[0].tasks[key + 1]));
+            // Object.keys(projects[0].tasks).forEach(key => projects[0].tasks[key] === undefined ? delete projects[0].tasks[key] : {});
+            // Object.keys(projects[0].tasks[number - 1]).forEach(key => projects[0].tasks[key] === undefined && delete projects[0].tasks[key])
+            // localStorage.clear();
+            // localStorage.setItem('inbox', JSON.stringify(projects[0].tasks))
+            // projects[0].tasks.forEach(task => {
+                // projects[0].tasks.splice(number - 1, 1);
+                // delete projects[0].tasks[number - 1];
+                // console.log(projects[0].tasks);
+            // })
+        } else {}
+
     })
 }
 
@@ -73,10 +116,21 @@ const showProjects = (projectName, number) => {
         currentProject_div.textContent = number + ' ' + projectName;
 
         let indexOfProject = parseInt(project_li.textContent.charAt(0));
-        // console.log(projects);
+        // console.log(projects[indexOfProject - 1]);
+        // console.log(indexOfProject)
+        // console.log(projects[indexOfProject - 1].tasks);
+        // if (projects[indexOfProject - 1].tasks === '[undefined]') {
+            // console.log('none');
+        // }
+        // console.log(indexOfProject)
         projects[indexOfProject].tasks.forEach(task => {
-            // console.log(task)
-            showTask(task.title, task.descriptio, task.duedate, task.priority);
+            // console.log(task === undefined);
+            console.log(task)
+            // if (task === undefined) {
+            if (task.length === 0) {
+            } else {
+                showTask(task.title, task.description, task.duedate, task.priority, indexOfProject);
+            }
         })
     })
 }

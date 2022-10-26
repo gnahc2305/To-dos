@@ -103,7 +103,7 @@ a {
 .left,
 .right {
     display: flex;
-    align-items: center;
+    align-items: center;    
     padding: 20px;
 }
 
